@@ -57,10 +57,9 @@ function enable() {
 	if(2500 < targetMonitor.width)
 		columns = 4;
 
-	let position = Math.floor(dropLocation.x / (targetMonitor.width / columns));
+	let position = Math.floor((dropLocation.x - targetMonitor.x) / (targetMonitor.width / columns));
 
-	_showHello("sepp " + position);
-
+	window.move_resize_frame(true, targetMonitor.x + position * targetMonitor.width / columns, targetMonitor.y, targetMonitor.width/columns, targetMonitor.height);
   });
 }
 
