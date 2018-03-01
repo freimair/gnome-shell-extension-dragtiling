@@ -42,7 +42,11 @@ function enable() {
 
 	let targetMonitor = Main.layoutManager.monitors[window.get_monitor()];
 
-	_showHello("sepp " + targetMonitor.width);
+	let columns = 2;
+	if(2500 < targetMonitor.width)
+		columns = 4;
+
+	_showHello("sepp " + columns);
 
   });
 }
