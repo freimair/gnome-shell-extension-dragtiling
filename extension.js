@@ -40,13 +40,24 @@ function enable() {
 	if (operation !== Meta.GrabOp.MOVING)
 		return;
 
-	let targetMonitor = Main.layoutManager.monitors[window.get_monitor()];
+	let dropLocation = window.get_frame_rect();
+
+	let targetMonitor = null;
+	for(let currentMonitorId in Main.layoutManager.monitors) {
+		let currentMonitor = Main.layoutManager.monitors[currentMonitorId];
+		if(currentMonitor.x < dropLocation.x && dropLocation.x < currentMonitor.x + currentMonitor.width) {
+			if(currentMonitor.y < dropLocation.y && dropLocation.y < currentMonitor.y + currentMonitor.height) {
+				targetMonitor = currentMonitor;
+				break;
+			}
+		}
+	}
 
 	let columns = 2;
 	if(2500 < targetMonitor.width)
 		columns = 4;
 
-	_showHello("sepp " + columns);
+	_showHello("sepp " + targetMonitor.x + " " + targetMonitor.y + " " + targetMonitor.width);
 
   });
 }
