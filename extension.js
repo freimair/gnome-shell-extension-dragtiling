@@ -3,16 +3,16 @@ const St = imports.gi.St;
 const Main = imports.ui.main;
 const Tweener = imports.ui.tweener;
 
-let text, button;
+let text;
 
 function _hideHello() {
     Main.uiGroup.remove_actor(text);
     text = null;
 }
 
-function _showHello() {
+function _showHello(label) {
     if (!text) {
-        text = new St.Label({ style_class: 'helloworld-label', text: "Hello, world!" });
+        text = new St.Label({ style_class: 'helloworld-label', text: label });
         Main.uiGroup.add_actor(text);
     }
 
@@ -31,23 +31,16 @@ function _showHello() {
 }
 
 function init() {
-    button = new St.Bin({ style_class: 'panel-button',
-                          reactive: true,
-                          can_focus: true,
-                          x_fill: true,
-                          y_fill: false,
-                          track_hover: true });
-    let icon = new St.Icon({ icon_name: 'system-run-symbolic',
-                             style_class: 'system-status-icon' });
 
-    button.set_child(icon);
-    button.connect('button-press-event', _showHello);
 }
 
 function enable() {
-    Main.panel._rightBox.insert_child_at_index(button, 0);
+  _handle_display = global.display.connect('grab-op-end', (display, screen, window, operation) => {
+  	_showHello(op + " " + w1);
+
+  });
 }
 
 function disable() {
-    Main.panel._rightBox.remove_child(button);
+  global.display.disconnect(_handle_display);
 }
