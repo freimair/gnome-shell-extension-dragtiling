@@ -1,6 +1,7 @@
 
 const St = imports.gi.St;
 const Main = imports.ui.main;
+const Meta = imports.gi.Meta;
 const Tweener = imports.ui.tweener;
 
 let text;
@@ -36,7 +37,10 @@ function init() {
 
 function enable() {
   _handle_display = global.display.connect('grab-op-end', (display, screen, window, operation) => {
-  	_showHello(op + " " + w1);
+	if (operation !== Meta.GrabOp.MOVING)
+		return;
+
+	_showHello("sepp " + window.get_frame_rect().x + " " + window.get_frame_rect().y);
 
   });
 }
