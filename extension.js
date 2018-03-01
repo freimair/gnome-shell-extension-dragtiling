@@ -40,7 +40,9 @@ function enable() {
 	if (operation !== Meta.GrabOp.MOVING)
 		return;
 
-	_showHello("sepp " + window.get_frame_rect().x + " " + window.get_frame_rect().y);
+	let targetMonitor = Main.layoutManager.monitors[window.get_monitor()];
+
+	_showHello("sepp " + targetMonitor.width);
 
   });
 }
