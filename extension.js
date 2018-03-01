@@ -20,8 +20,8 @@ function _showHello(label) {
 
     let monitor = Main.layoutManager.primaryMonitor;
 
-    text.set_position(monitor.x + Math.floor(monitor.width / 2 - text.width / 2),
-                      monitor.y + Math.floor(monitor.height / 2 - text.height / 2));
+    text.set_position(monitor.x + Math.floor(monitor.width / 3 - text.width / 2),
+                      monitor.y + Math.floor(monitor.height / 3 - text.height / 2));
 
     Tweener.addTween(text,
                      { opacity: 0,
