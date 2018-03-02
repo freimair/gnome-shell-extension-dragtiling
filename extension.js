@@ -25,9 +25,7 @@ function enable() {
 		}
 	}
 
-	let columns = 2;
-	if(2500 < targetMonitor.width)
-		columns = 4;
+	let columns = Math.ceil(targetMonitor.width /  1200);
 
 	let position = Math.floor((dropLocation.x - targetMonitor.x) / (targetMonitor.width / columns));
 
