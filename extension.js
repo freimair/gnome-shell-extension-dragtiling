@@ -25,6 +25,8 @@ function enable() {
 		}
 	}
 
+	targetMonitor = Main.layoutManager.getWorkAreaForMonitor(targetMonitor.index);
+
 	let columns = Math.ceil(targetMonitor.width /  1200);
 	let slotwidth = targetMonitor.width / columns;
 
