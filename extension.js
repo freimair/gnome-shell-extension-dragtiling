@@ -26,10 +26,12 @@ function enable() {
 	}
 
 	let columns = Math.ceil(targetMonitor.width /  1200);
+	let slotwidth = targetMonitor.width / columns;
 
-	let position = Math.floor((dropLocation.x - targetMonitor.x) / (targetMonitor.width / columns));
+	let position = Math.floor((dropLocation.x - targetMonitor.x) / slotwidth);
 
-	window.move_resize_frame(true, targetMonitor.x + position * targetMonitor.width / columns, targetMonitor.y, targetMonitor.width/columns, targetMonitor.height);
+	if(dropLocation.x - targetMonitor.x < position * slotwidth + 0.5 * slotwidth && dropLocation.y - targetMonitor.y < 0.1 * targetMonitor.height)
+		window.move_resize_frame(true, targetMonitor.x + position * slotwidth, targetMonitor.y, slotwidth, targetMonitor.height);
   });
 }
 
